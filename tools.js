@@ -139,20 +139,24 @@ module.exports = {
         */
 
         
-    }, /*playersInDb: function() {
+    }, playersToFiles: function(i) {
 
-      var arr = [];
+      //for (i = 0; i < 31; i++) {
 
-      pool.query(`SELECT NAME FROM Montreal;`, function (error, results, fields) {
-        if (error) throw error;
-        //console.log(results);
-        var js = JSON.stringify(results);
-        console.log(js);
+      
 
-        fs.appendFile('playersDB.json',js, function(err) {
-          if (err) throw err;
-        });
+        pool.query(`SELECT * FROM ${teams[i]};`, function (error, results, fields) {
+          if (error) throw error;
+          //console.log(results);
+          var js = JSON.stringify(results);
+          console.log(js);
 
-      }); 
-      }*/
+          fs.appendFile(`./teamPlayers/${teams[i]}PlayersDB.json`,js, function(err) {
+            if (err) throw err;
+          });
+
+        }); 
+      }
+
+    //}
 };
